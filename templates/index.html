@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Frontend</title>
+</head>
+<body>
+    <h1>Python Frontend</h1>
+    
+    <form action="{{ url_for('submit') }}" method="post">
+        <label for="user_input">User Input:</label>
+        <input type="text" name="user_input" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if response %}
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>
