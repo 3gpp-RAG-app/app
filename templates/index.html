@@ -1,21 +1,63 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Frontend</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body>
-    <h1>Python Frontend</h1>
-    
-    <form action="{{ url_for('submit') }}" method="post">
-        <label for="user_input">User Input:</label>
-        <input type="text" name="user_input" required>
-        <button type="submit">Submit</button>
-    </form>
 
-    {% if response %}
-        <p>{{ response }}</p>
-    {% endif %}
+<body class="font-sans">
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-gray-800">
+                <div class="flex items-center justify-center h-16 bg-gray-900 text-white">
+                    <span class="text-xl font-semibold">Sidebar</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Bar/Header -->
+            <header class="w-full bg-gray-700 text-white">
+                <div class="flex items-center justify-between p-4">
+                    <h1 class="text-2xl font-semibold">Python Frontend</h1>
+                </div>
+            </header>
+
+            <!-- Chat Section -->
+            <main class="flex-1 flex flex-col overflow-x-hidden bg-gray-200 p-4">
+                <div id="chat-history" class="mb-4">
+                    {% if chat_history %}
+                      <div>
+                        {% for chat_item in chat_history %}
+                          <p>User: {{ chat_item.user }}</p>
+                          <p>Bot: {{ chat_item.bot }}</p>
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      <p>No chat history available.</p>
+                    {% endif %}
+                </div>
+            </main>
+
+            <!-- Chatbox -->
+            <!-- <form id="chat-form" onsubmit="sendMessage()" class="p-4 bg-white">
+                <label for="user_input" class="block text-gray-700">User Input:</label>
+                <input type="text" id="user_input" required class="border p-2 w-full">
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded mt-2">Submit</button>
+            </form> -->
+            <form action="{{ url_for('submit') }}" method="post">
+                <label for="user_input">User Input:</label>
+                <input type="text" name="user_input" required class="border p-2">
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button> 
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
