@@ -9,16 +9,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
- 
-
 completion_history = []
-
- 
 
 def add_to_completion_history(user_message, bot_message):
     completion_history.append({'user': user_message, 'bot': bot_message})
-
- 
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -28,28 +22,21 @@ def submit():
         response = requests.post(api_endpoint, json={'query': user_input})
         output_file_path = 'best_hit_details.txt'
 
- 
-
-        
-
- 
 
         '''if response.status_code == 200:
             result = response.json()["results"]'''
         result='The total layer 2 buffer size is defined as the sum of the number of bytes that the UE is capable of storing in the RLC transmission windows and RLC reception and reassembly windows and also in PDCP reordering windows for all radio bearers.'
 
- 
-
         completion = client.chat.completions.create(
-                model="gpt-4-turbo-preview",
-                messages=[
-                    {"role": "system", "content": f'You are a 3GPP specialized assistant that provides responses to the user based on the provided reference. Let the user know if the answer cannot be found in the given reference, respond "I could not find an answer." ,  Here is the reference: {result}.'},
-                    {"role": "user", "content": user_input}
-                ],
-                temperature=0.2,
-                max_tokens=2000,
-                stop=None
-            )
+            model="gpt-4-turbo-preview",
+            messages=[
+                {"role": "system", "content": f'You are a 3GPP specialized assistant that provides responses to the user based on the provided reference. Let the user know if the answer cannot be found in the given reference, respond "I could not find an answer." ,  Here is the reference: {result}.'},
+                {"role": "user", "content": user_input}
+            ],
+            temperature=0.2,
+            max_tokens=2000,
+            stop=None
+        )
 
  
 
@@ -73,4 +60,3 @@ def submit():
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
- 
