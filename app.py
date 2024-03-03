@@ -3,25 +3,44 @@ import requests
 from config import client  
 app = Flask(__name__)
 
+ 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+ 
+
+completion_history = []
+
+ 
+
+def add_to_completion_history(user_message, bot_message):
+    completion_history.append({'user': user_message, 'bot': bot_message})
+
+ 
 
 @app.route('/submit', methods=['POST'])
 def submit():
     try:
         user_input = request.form['user_input']
-        api_endpoint = 'https://true-suns-cry.loca.lt/milvus/search' # remeber to activate my ip is 81.175.131.163
+        api_endpoint = 'https://true-suns-cry.loca.lt/milvus/search'
         response = requests.post(api_endpoint, json={'query': user_input})
         output_file_path = 'best_hit_details.txt'
 
-        if response.status_code == 200:
-            result = response.json()["results"]
-            
-            with open(output_file_path, 'w') as file:
-                file.write(f'Best hit text: {result}\n')
+ 
 
-            completion = client.chat.completions.create(
+        
+
+ 
+
+        '''if response.status_code == 200:
+            result = response.json()["results"]'''
+        result='The total layer 2 buffer size is defined as the sum of the number of bytes that the UE is capable of storing in the RLC transmission windows and RLC reception and reassembly windows and also in PDCP reordering windows for all radio bearers.'
+
+ 
+
+        completion = client.chat.completions.create(
                 model="gpt-4-turbo-preview",
                 messages=[
                     {"role": "system", "content": f'You are a 3GPP specialized assistant that provides responses to the user based on the provided reference. Let the user know if the answer cannot be found in the given reference, respond "I could not find an answer." ,  Here is the reference: {result}.'},
@@ -32,15 +51,26 @@ def submit():
                 stop=None
             )
 
-            response_message = completion.choices[0].message
-            return render_template('index.html', response=response_message)
-        else:
+ 
+
+        response_message = completion.choices[0].message
+        add_to_completion_history(user_message=user_input, bot_message=response_message.content)
+        return render_template('index.html', completion_history=completion_history)
+
+ 
+
+        '''else:
             result = f"Error: {response.status_code}"
-            return render_template('index.html', response=result)
+            return render_template('index.html', response=result)'''
+
+ 
 
     except Exception as e:
         result = f"Error: {str(e)}"
         return render_template('index.html', response=result)
 
+ 
+
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
+ 
