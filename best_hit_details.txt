@@ -1,0 +1,240 @@
+Best hit text: 4.2.11	Void
+4.2.12	Void
+4.2.13	IMS Parameters
+
+NOTE:	In this release of specification, IMS voice over split bearer is not supported for NR-DC and NE-DC.
+4.2.14	RRC buffer size
+The RRC buffer size is defined as the maximum overall RRC configuration size that the UE is required to store. The RRC buffer size is 45Kbytes.
+4.2.15	IAB Parameters
+4.2.15.1	Mandatory IAB-MT features
+Table 4.2.15.1-1, Table 4.2.15.1-2 and Table 4.2.15.1-3 capture feature groups, which are mandatory for an IAB-MT. All other feature groups or components of the feature groups as captured in TR 38.822 [24] as well as capabilities specified in this specification are optional for an IAB-MT, unless indicated otherwise.
+Table 4.2.15.1-1: Layer-1 mandatory features for IAB-MT
+
+Table 4.2.15.1-2: Layer-2 and Layer-3 mandatory features for IAB-MT
+
+Table 4.2.15.1-3: RF/RRM mandatory features for IAB-MT
+
+4.2.15.1a	Mandatory mobile IAB-MT features
+Mobile IAB-MT shall apply the same capabilities as IAB-MT unless indicated otherwise. In addition, it is mandatory for mobile IAB-MT to support the following features:
+-	Acquisition of gNB-ID-Length from SIB1, as specified in TS 38.331 [9].
+-	Cell barring based on mobileIAB-Support, as specified in TS 38.331 [9].
+-	Inclusion of mobileIAB-NodeIndication, as specified in TS 38.331 [9].
+4.2.15.2	General Parameters
+
+4.2.15.3	SDAP Parameters
+
+4.2.15.4	PDCP Parameters
+
+4.2.15.5	BAP Parameters
+
+4.2.15.6	MAC Parameters
+
+4.2.15.7	Physical layer parameters
+4.2.15.7.1	BandNR parameters
+
+4.2.15.7.2	Phy-Parameters
+
+4.2.15.8	MeasAndMobParameters Parameters
+
+4.2.15.9	MR-DC Parameters
+
+4.2.15.10	NRDC Parameters
+
+4.2.16	Sidelink Parameters
+4.2.16.1	Sidelink Parameters in NR
+4.2.16.1.1	Sidelink General Parameters
+
+4.2.16.1.2	Sidelink PDCP Parameters
+
+4.2.16.1.3	Sidelink RLC Parameters
+
+4.2.16.1.4	Sidelink MAC Parameters
+
+4.2.16.1.5	Other PHY parameters
+
+4.2.16.1.6	BandSidelink Parameters
+
+4.2.16.1.7	BandCombinationListSidelinkEUTRA-NR Parameters
+
+4.2.16.2	Sidelink Parameters in E-UTRA
+4.2.16.2.0	General
+
+4.2.16.2.1	BandSideLinkEUTRA parameters
+
+4.2.17	SON parameters
+
+4.2.18	UE-based performance measurement parameters
+
+4.2.19	High speed parameters
+
+4.2.20	Application layer measurement parameters
+
+4.2.21	RedCap Parameters
+4.2.21.1	Definition of RedCap UE
+RedCap UE is the UE with reduced capability:
+-	The maximum bandwidth is 20 MHz for FR1, and is 100 MHz for FR2. UE features and corresponding capabilities related to UE bandwidths wider than 20 MHz in FR1 or wider than 100 MHz in FR2 are not supported by RedCap UEs;
+-	The maximum mandatory supported DRB number is 8;
+-	The mandatory supported PDCP SN length is 12 bits while 18 bits being optional;
+-	The mandatory supported RLC AM SN length is 12 bits while 18 bits being optional;
+-	For FR1, 1 DL MIMO layer if 1 Rx branch is supported, and 2 DL MIMO layers if 2 Rx branches are supported; for FR2, either 1 or 2 DL MIMO layers can be supported, while 2 Rx branches are always supported. For FR1 and FR2, UE features and corresponding capabilities related to more than 2 UE Rx branches or more than 2 DL MIMO layers, as well as UE features and capabilities related to more than 1 UE Tx branch or more than 1 UL MIMO layer are not supported by RedCap UEs;
+-	CA, MR-DC, DAPS, CPAC and IAB (i.e., the RedCap UE is not expected to act as IAB node) related UE features and corresponding capabilities are not supported by RedCap UEs. All other feature groups or components of the feature groups as captured in TR 38.822 [24] as well as capabilities specified in this specification remain applicable for RedCap UEs same as other UEs, unless indicated otherwise.
+4.2.21.2	General parameters
+
+4.2.21.3	PDCP parameters
+
+4.2.21.4	RLC parameters
+
+4.2.21.5	MeasAndMobParameters
+
+4.2.21.6	Physical layer parameters
+4.2.21.6.1	BandNR parameters
+
+4.2.22	eRedCap Parameters
+4.2.22.1	Definition of eRedCap UE
+eRedCap UE is the UE with reduced peak data rate and, with or without reduced baseband bandwidth in FR1:
+-	The maximum bandwidth is 20 MHz for FR1. UE features and corresponding capabilities related to UE bandwidths wider than 20 MHz in FR1 are not supported by eRedCap UEs. eRedCap UEs do not support operation in FR2 and in FR1 60kHz SCS.
+-	CA, MR-DC, DAPS, CPAC and IAB (i.e., the eRedCap UE is not expected to act as IAB node) related UE features and corresponding capabilities are not supported by eRedCap UEs. All other feature groups or components of the feature groups as captured in TR 38.822 [24] as well as capabilities specified in this specification remain applicable for eRedCap UEs same as other UEs, unless indicated otherwise.
+4.2.22.2	General parameters
+
+4.2.23	NCR Parameters
+4.2.23.1	Mandatory NCR-MT features
+Table 4.2.23.1-1, Table 4.2.23.1-2 capture feature groups, which are mandatory for an NCR-MT.
+CA, MR-DC, handover (e.g. CHO, DAPS, CPAC, etc) related UE features and corresponding capabilities are not supported by an NCR-MT. All other feature groups or components of the feature groups as captured in TR 38.822 [24] as well as capabilities specified in this specification are optional for an NCR-MT, unless indicated otherwise.
+Table 4.2.23.1-1: Layer-1 mandatory features for NCR-MT
+
+Table 4.2.23.1-2: Layer-2 and Layer-3 mandatory features for NCR-MT
+
+4.2.23.2	General Parameters
+
+4.2.23.3	SDAP Parameters
+
+4.2.23.4	PDCP Parameters
+
+4.2.23.5	RLC Parameters
+
+4.2.23.6	Physical layer Parameters
+4.2.23.6.1	Phy-Parameters
+
+4.2.24	Aerial UE Parameters
+
+5	Optional features without UE radio access capability parameters
+5.1	PWS features
+
+5.2	UE receiver features
+
+5.3	RRC connection
+
+5.4	Other features
+
+5.5	Sidelink Features
+
+5.6	RRM measurement features
+
+5.7	MDT and SON features
+
+5.8	Extended DRX features
+
+5.9	Sidelink Relay Features
+
+5.10	MBS features
+
+5.11	Idle/inactive measurement for voice fallback features
+
+5.12	NCR features
+
+6	Conditionally mandatory features without UE radio access capability parameters
+
+7	Void
+8	UE Capability Constraints
+The following table lists constraints indicating the UE capabilities that the UE shall support.
+
+Annex A (normative):
+Differentiation of capabilities
+A.1:	TDD/FDD differentiation of capabilities in TDD-FDD CA
+Annex A.1 specifies for which TDD and FDD serving cells a UE supporting TDD/FDD CA shall support a feature/capability for which it indicates support within the capability signalling.
+A UE that indicates support for TDD/FDD CA (e.g. MCG or SCG):
+-	For the fields for which the UE is allowed to indicate different support for FDD and TDD, the UE shall support the feature on the PCell and/or SCell(s), as specified in tables A.1-1 in accordance to the following rules:
+-	PCell: the UE shall support the feature for the PCell, if the UE indicates support of the feature for the PCell duplex mode;
+-	PSCell: the UE shall support the feature for the PSCell, if the UE indicates support of the feature for the PSCell duplex mode;
+-	Per serving cell: the UE shall support the feature for a serving cell if the UE indicates support of the feature for the serving cell's duplex mode;
+-	All serving cells: UE shall support the feature for all serving cells in a CG if the UE indicates support of the feature for both TDD and FDD duplex modes;
+-	Associated serving cells: UE shall support the feature if the UE indicates support of the feature for all associated serving cells's duplex modes;
+-	For the fields where the UE is not allowed to indicate different support for FDD and TDD, the UE shall support the feature for PCell and SCell(s) if the UE indicates support of the feature via the common capability bit.
+Table A.1-1: UE capabilities for which FDD/TDD differentiation is allowed
+
+A.2:	FR1/FR2 differentiation of capabilities in FR1-FR2 CA
+Annex A.2 specifies for which FR1 and FR2 serving cells a UE supporting FR1/FR2 CA shall support a feature/capability for which it indicates support within the capability signalling.
+A UE that indicates support for FR1/FR2 CA (e.g. MCG or SCG):
+-	For the fields for which the UE is allowed to indicate different support for FR1 and FR2, the UE shall support the feature on the PCell and/or SCell(s), as specified in tables A.2-1 in accordance to the following rules:
+-	PCell: the UE shall support the feature for the PCell, if the UE indicates support of the feature for the PCell FR mode;
+-	Associated serving cells: UE shall support the feature if the UE indicates support of the feature for associated serving cells's FR modes;
+-	For the fields where the UE is not allowed to indicate different support for FR1 and FR2, the UE shall support the feature for PCell and SCell(s) if the UE indicates support of the feature via the common capability bit.
+Table A.2-1: UE capabilities for which FR1/FR2 differentiation is allowed
+
+A.3:	TDD/FDD differentiation of capabilities for sidelink
+Annex A.3 specifies for which TDD and FDD serving cells for Uu interface and carrier for PC5 interface a UE supporting sidelink shall support a feature/capability for which it indicates support within the capability signalling.
+A UE that indicates support for sidelink:
+-	For the fields for which the UE is allowed to indicate different support for FDD and TDD, the UE shall support the feature on the PCell and/or SCell(s) for Uu interface, as specified in tables A.3-1 in accordance to the following rules:
+-	Per serving cell: the UE shall support the feature for a serving cell if the UE indicates support of the feature for the serving cell's duplex mode;
+-	Associated serving cells: UE shall support the feature if the UE indicates support of the feature for all associated serving cells's duplex modes;
+-	For the fields where the UE is not allowed to indicate different support for FDD and TDD, the UE shall support the feature for PCell and SCell(s) for Uu interface and carrier for PC5 interface if the UE indicates support of the feature via the common capability bit.
+Table A.3-1: Rel-16 UE capabilities for which FDD/TDD differentiation is allowed
+
+A.4:	Sidelink capabilities applicable to Uu and PC5
+Annex A.4 specifies for each sidelink related capability, in which interface (i.e., UECapabilityInformation in Uu RRC and UECapabilityInformationSidelink in PC5 RRC) a UE supporting sidelink shall report the concerned capability:
+-	UECapabilityInformation: the concerned sidelink capability is reported within UECapabilityInformation;
+-	UECapabilityInformationSidelink: the concerned sidelink capability is reported within UECapabilityInformationSidelink;
+Table A.4-1: Sidelink capability reported in UECapabilityInformation/ UECapabilityInformationSidelink
+
+A.5:	General differentiation of capabilities in Cross-Carrier operation
+Annex A.5 specifies for which multiple serving cells a UE supporting cross-carrier operation shall support a feature/capability for which it indicates support within the capability signalling.
+A UE that indicates support for cross-carrier operation in CA (e.g. MCG or SCG):
+-	For the fields for which the UE is allowed to indicate different support for different bands, the UE shall support the feature on the PCell and/or SCell(s) in cross-carrier operation, as specified in table A.5-1 in accordance to the following rules:
+-	Triggered serving cell: the UE shall support the feature if the UE indicates support of the feature for the band of the scheduled/triggered/indicated serving cell;
+-	Triggering&Triggered serving cells: UE shall support the feature if the UE indicates support of the feature for the band of both the scheduling/triggering/indicating serving cell and the scheduled/triggered/indicated serving cell;
+Table A.5-1: General UE capabilities for which differentiation is allowed
+
+Annex B (informative):
+UE capability indication for UE capabilities with both FDD/TDD and FR1/FR2 differentiations
+Annex B clarifies the UE capability indication for the case where the UE is allowed to support different functionality between FDD and TDD, and between FR1 and FR2. Table B-1 clarifies the setting of UE capability fields for cases where the UE supports the corresponding feature in different combinations of duplex mode and frequency range. There are two possible ways of UE capability indication in Case 3 and Case 8.
+Table B-1: UE capability indication for UE capabilities with both FDD/TDD and FR1/FR2 differentiations
+
+NOTE 1:	For a UE capability which cannot be differentiated between FR2-1 and FR2-2, 'FR2 TDD' in Table B-1 includes both 'FR2-1 TDD' and 'FR2-2 TDD'.
+NOTE 2:	For a UE capability which can be differentiated between FR2-1 and FR2-2, 'FR2 TDD' in Table B-1 only means 'FR2-1 TDD'.
+
+Annex C (informative):
+Change history
+
+SCS (kHz)	RLC RTT (ms)
+15KHz	50
+30KHz	40
+60KHz	30
+120KHz	20
+480KHz	20
+960KHz	20
+
+SCS (kHz)	RLC RTT (ms)
+15KHz	200
+30KHz	100
+60KHz	50
+120KHz	25
+
+Definitions for parameters	Per	M	FDD-TDD DIFF	FR1-FR2
+DIFF	accessStratumRelease
+Indicates the access stratum release the UE supports as specified in TS 38.331 [9].
+UE	Yes	No	No	additionalBSR-Table-r18
+Indicates whether the UE supports the BSR enhancements associated with the additional BSR table as specified in TS 38.321 [8] and TS 38.331 [9].	UE
+No	No	No	airToGroundNetwork-r18
+Indicates whether the UE supports air to ground network access. If the UE indicates this capability the UE shall support the following ATG essential features, e.g., acquiring ATG cell specific SIBxx and ATG cell specific P-Max.	UE	No
+No	FR1 only	crossCarrierSchedulingConfigurationRelease-r17
+Indicates whether the UE supports using crossCarrierSchedulingConfigRelease to release the configurations configured by crossCarrierSchedulingConfig.	UE	No	No
+No	delayBudgetReporting
+Indicates whether the UE supports delay budget reporting as specified in TS 38.331 [9].	UE	No	No	No
+delayStatusReport-r18
+Indicates whether the UE supports the delay status report of the buffered data as specified in TS 38.321 [8], TS 38.331 [9], TS 38.323 [16] and TS 38.322 [36].	UE	No	No	No	disableCG-RetransmissionMonitoring-r18
+Indicates whether the UE supports to disable monitoring for retransmissions corresponding to a ConfiguredGrantConfig as specified in TS 38.321 [8] and TS 38.331 [9].
+UE	No	No	No	dl-DedicatedMessageSegmentation-r16
+Indicates whether the UE supports reception of segmented DL RRC messages.	UE
+No	No	No	drx-Preference-r16
+Indicates whether the UE supports providing its preference of a cell group on DRX parameters for power saving in RRC_CONNECTED, as specified in TS 38.331 [9].	UE	No
+
