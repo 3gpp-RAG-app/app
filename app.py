@@ -28,9 +28,11 @@ def submit():
         result='The total layer 2 buffer size is defined as the sum of the number of bytes that the UE is capable of storing in the RLC transmission windows and RLC reception and reassembly windows and also in PDCP reordering windows for all radio bearers.'
 
         completion = client.chat.completions.create(
-            model="gpt-4-turbo-preview",
+            # model="gpt-4-turbo-preview",
+            model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": f'You are a 3GPP specialized assistant that provides responses to the user based on the provided reference. Let the user know if the answer cannot be found in the given reference, respond "I could not find an answer." ,  Here is the reference: {result}.'},
+                # {"role": "system", "content": f'You are a 3GPP specialized assistant that provides responses to the user based on the provided reference. Let the user know if the answer cannot be found in the given reference, respond "I could not find an answer." ,  Here is the reference: {result}.'},
+                {"role": "system", "content": 'You are a chatbot.'},
                 {"role": "user", "content": user_input}
             ],
             temperature=0.2,
@@ -56,7 +58,9 @@ def submit():
         result = f"Error: {str(e)}"
         return render_template('index.html', response=result)
 
- 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
