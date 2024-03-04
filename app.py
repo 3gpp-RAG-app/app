@@ -1,25 +1,51 @@
-from flask import Flask, render_template, request
+from flask import Flask, session, render_template, request
+import uuid
 import requests
-from config import client  
+from datetime import datetime  
+from config import client, logs_endpoint, search_endpoint, secrect_key  
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secrect_key
 
-@app.route('/')
+
+completion_history = []
+
+def get_session():
+    if 'session_id' not in session:
+        session['session_id'] = str(uuid.uuid4())
+        return session['session_id']
+
+def add_to_completion_history(user_message=None, bot_message=None):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry = {}
+    if user_message is not None:
+        entry['user'] = {'query': user_message, 'timestamp': timestamp}
+    if bot_message is not None:
+        entry['bot'] = {'response': bot_message, 'timestamp': timestamp}
+    completion_history.append(entry)
+
+def post_logs(messages_list):
+    session_id = get_session()
+    response_log = requests.post(logs_endpoint, json={'conversation_id': session_id, 'messages': messages_list})
+                
+    if response_log.status_code == 200:
+        result = "Conversation logged successfully."
+    else:
+        result = f"Error logging conversation: {response_log.status_code}"
+
+
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
+
     try:
         user_input = request.form['user_input']
-        api_endpoint = 'https://true-suns-cry.loca.lt/milvus/search' # remeber to activate my ip is 81.175.131.163
-        response = requests.post(api_endpoint, json={'query': user_input})
-        output_file_path = 'best_hit_details.txt'
+        add_to_completion_history(user_message=user_input)
+        response_search = requests.post(search_endpoint, json={'query': user_input})
 
-        if response.status_code == 200:
-            result = response.json()["results"]
-            
-            with open(output_file_path, 'w') as file:
-                file.write(f'Best hit text: {result}\n')
+        if response_search.status_code == 200:
+            result = response_search.json()["results"]
 
             completion = client.chat.completions.create(
                 model="gpt-4-turbo-preview",
@@ -33,9 +59,12 @@ def submit():
             )
 
             response_message = completion.choices[0].message
-            return render_template('index.html', response=response_message)
+            add_to_completion_history(bot_message=response_message.content)
+            post_logs(completion_history)
+            return render_template('index.html', completion_history=completion_history)
+
         else:
-            result = f"Error: {response.status_code}"
+            result = f"Error in search request: {response_search.status_code}"
             return render_template('index.html', response=result)
 
     except Exception as e:

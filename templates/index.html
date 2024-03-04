@@ -3,19 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Frontend</title>
+    <style>
+        #loading-spinner {
+            display: none;
+        }
+    </style>
+    <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 </head>
 <body>
-    <h1>Python Frontend</h1>
     
-    <form action="{{ url_for('submit') }}" method="post">
-        <label for="user_input">User Input:</label>
-        <input type="text" name="user_input" required>
-        <button type="submit">Submit</button>
-    </form>
+    <label for="user_input">User Input:</label>
+    <input type="text" id="user_input" required>
+    <button onclick="submitToDatabase()">Submit</button>
+    <div id="loading-spinner">Loading...</div>
 
-    {% if response %}
-        <p>{{ response }}</p>
-    {% endif %}
+    <div id="completion_history">
+        {% if completion_history %}
+            {% for entry in completion_history %}
+                {% if entry.user %}
+                    <p>User: {{ entry.user.query }} - {{ entry.user.timestamp }}</p>
+                {% endif %}
+                {% if entry.bot %}
+                    <p>Bot: {{ entry.bot.response }} - {{ entry.bot.timestamp }}</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p></p>
+        {% endif %}
+    </div>
+
 </body>
 </html>
