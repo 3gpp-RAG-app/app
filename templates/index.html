@@ -1,36 +1,73 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Frontend</title>
     <style>
         #loading-spinner {
             display: none;
         }
     </style>
     <script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
-<body>
-    
-    <label for="user_input">User Input:</label>
-    <input type="text" id="user_input" required>
-    <button onclick="submitToDatabase()">Submit</button>
-    <div id="loading-spinner">Loading...</div>
+<body class="font-sans">
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0 bg-gray-700">
+            <div class="flex flex-col w-64 bg-gray-700">
+                <div class="flex items-center justify-center h-16 bg-gray-900 text-white">
+                    <span class="text-xl font-semibold">History</span>
+                </div>
+            </div>
+        </div>
 
-    <div id="completion_history">
-        {% if completion_history %}
-            {% for entry in completion_history %}
-                {% if entry.user %}
-                    <p>User: {{ entry.user.query }} - {{ entry.user.timestamp }}</p>
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Bar/Header -->
+            <header class="w-full bg-gray-900 text-white">
+                <div class="flex items-center justify-center p-4">
+                    <h1 class="text-2xl font-semibold">3GPP Chatbot</h1>
+                </div>
+            </header>
+            
+            <main class="flex-1 flex flex-col overflow-x-hidden bg-gray-200 p-4">
+                {% if completion_history %}
+                    <div>
+                        {% for item in completion_history %}
+                            <!-- User message -->
+                            <div class="flex items-start mb-4">
+                                <img src="USER_PROFILE_IMAGE_URL" alt="User Profile Picture" class="w-10 h-10 rounded-full mr-2">
+                                <div class="bg-gray-300 rounded-lg p-2">
+                                    <p>{{ item.user }}</p>
+                                </div>
+                            </div>
+                            <!-- Bot response -->
+                            <div class="flex items-start justify-end mb-4">
+                                <div class="bg-gray-500 rounded-lg p-2">
+                                    <p>{{ item.bot }}</p>
+                                </div>
+                                <img src="BOT_PROFILE_IMAGE_URL" alt="Bot Profile Picture" class="w-10 h-10 rounded-full ml-2">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No completion history available.</p>
                 {% endif %}
-                {% if entry.bot %}
-                    <p>Bot: {{ entry.bot.response }} - {{ entry.bot.timestamp }}</p>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <p></p>
-        {% endif %}
+            </main>
+
+            <div id="loading-spinner">Loading...</div>
+            
+            <form action="{{ url_for('submit') }}" method="post" class="flex items-center justify-between bg-gray-600 p-4">
+                <label for="user_input" class="sr-only">User Input:</label>
+                <input type="text" name="user_input" required class="flex-1 border p-2 mr-2 text-lg" placeholder="Enter your text here">
+                <button type="submit" class="bg-gray-900 text-white p-2 rounded w-32 text-lg">Submit</button> 
+            </form>
+        </div>
     </div>
-
 </body>
+
 </html>
