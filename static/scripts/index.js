@@ -6,8 +6,7 @@ function submitToDatabase() {
         return;
     }
 
-    document.getElementById('loading-spinner').style.display = 'block';
-
+   
 
     fetch("/", {
         method: "POST",
@@ -25,8 +24,5 @@ function submitToDatabase() {
         console.error('Error:', error);
         alert("An error occurred. Please try again.");
     })
-    .finally(() => {
-   
-        document.getElementById('loading-spinner').style.display = 'none';
-    });
+
 }

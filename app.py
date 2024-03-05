@@ -70,6 +70,10 @@ def index():
     except Exception as e:
         result = f"Error: {str(e)}"
         return render_template('index.html', response=result)
+        
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
