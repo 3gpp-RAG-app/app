@@ -37,8 +37,6 @@ def post_logs(messages_list):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
-
     try:
         user_input = request.form['user_input']
         add_to_completion_history(user_message=user_input)
