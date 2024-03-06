@@ -4,7 +4,7 @@
             {% if entry.user %}
                 <div class="flex items-start justify-end mb-4">
                     <div class="bg-purple-300 rounded-lg p-2 ml-12">
-                        <p>{{ entry.user }}</p>
+                        <p>{{ entry.user.query }}</p>
                     </div>
                     <img src="../static/images/TransformersCir2-03.png" class="w-10 h-10 rounded-full ml-2">
                 </div>
@@ -14,7 +14,7 @@
                 <div class="flex items-start mb-4">
                     <img src="../static/images/TransformersCir2-01.png" class="w-10 h-10 rounded-full mr-2">
                     <div class="bg-purple-400 rounded-lg p-2 mr-12">
-                        <p>Bot: {{ entry.bot.response }} - {{ entry.bot.timestamp }}</p>
+                        <p> {{ entry.bot.response }}<!--  - {{ entry.bot.timestamp }}--></p>
                     </div>
                 </div>
             {% endif %}

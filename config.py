@@ -8,11 +8,15 @@ load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
-    raise ValueError("OpenAI API key is not set. Set the OPENAI_API_KEY environment variable.")
+    raise ValueError(
+        "OpenAI API key is not set. Set the OPENAI_API_KEY environment variable."
+    )
 
 client = OpenAI()
 client.api_key = openai_api_key
 
-search_endpoint = 'http://192.168.76.183:5001/milvus/search'
-logs_endpoint = 'http://192.168.76.183:5001/milvus/logs'
-secrect_key = 'thisShouldBeBetterPasswordLatee'
+search_endpoint = "http://127.0.0.1:5000/milvus/search"
+#'http://192.168.76.183:5001/milvus/search'
+logs_endpoint = "http://127.0.0.1:5000/milvus/logs" 
+
+secrect_key = "thisShouldBeBetterPasswordLatee"
