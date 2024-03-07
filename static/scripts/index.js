@@ -1,3 +1,4 @@
+// index.js
 function submitToDatabase(event) {
     event.preventDefault(); // Prevent default form submission behavior
 
@@ -8,6 +9,9 @@ function submitToDatabase(event) {
         return;
     }
 
+    // Show loading spinner
+    document.getElementById('loading-spinner').style.display = 'block';
+
     fetch("/", {
         method: "POST",
         headers: {
@@ -17,16 +21,15 @@ function submitToDatabase(event) {
     })
     .then(response => response.text())
     .then(data => {
-        // Create a temporary container to parse the HTML
+        // Hide loading spinner
+        document.getElementById('loading-spinner').style.display = 'none';
+
+        // Update the content
         var tempContainer = document.createElement('div');
         tempContainer.innerHTML = data;
 
-        // Find the chat area or message container in the parsed HTML
         var chatContainer = tempContainer.querySelector('#completion_history');
-
-        // Check if the chat area is found
         if (chatContainer) {
-            // Update the content of the actual chat area
             var actualChatContainer = document.getElementById('completion_history');
             actualChatContainer.innerHTML = chatContainer.innerHTML;
 
@@ -35,6 +38,8 @@ function submitToDatabase(event) {
         }
     })
     .catch(error => {
+        // Hide loading spinner on error
+        document.getElementById('loading-spinner').style.display = 'none';
         console.error('Error:', error);
         alert("An error occurred. Please try again.");
     });
