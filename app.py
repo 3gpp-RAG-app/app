@@ -1,3 +1,4 @@
+# app.py
 from flask import Flask, session, render_template, request
 import uuid
 import requests
@@ -49,6 +50,10 @@ def index():
     try:
         user_input = request.form["user_input"]
         add_to_completion_history(user_message=user_input)
+
+        add_to_completion_history(bot_message="Beep Boop Beep")                         # for testing only
+        # return render_template("index.html", completion_history=completion_history)     # for testing only
+    
         response_search = requests.post(search_endpoint, json={"query": inject_context(user_input)})
 
         if response_search.status_code == 200:
@@ -79,6 +84,7 @@ def index():
 
     except Exception as e:
         result = f"Error: {str(e)}"
+        return render_template("index.html", completion_history=completion_history)     # for testing only
         return render_template("index.html", response=result)
 
 

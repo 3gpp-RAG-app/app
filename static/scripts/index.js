@@ -17,7 +17,22 @@ function submitToDatabase(event) {
     })
     .then(response => response.text())
     .then(data => {
-        document.body.innerHTML = data;
+        // Create a temporary container to parse the HTML
+        var tempContainer = document.createElement('div');
+        tempContainer.innerHTML = data;
+
+        // Find the chat area or message container in the parsed HTML
+        var chatContainer = tempContainer.querySelector('#completion_history');
+
+        // Check if the chat area is found
+        if (chatContainer) {
+            // Update the content of the actual chat area
+            var actualChatContainer = document.getElementById('completion_history');
+            actualChatContainer.innerHTML = chatContainer.innerHTML;
+
+            // Optionally, you can also scroll to the bottom after updating the content
+            actualChatContainer.scrollTop = actualChatContainer.scrollHeight;
+        }
     })
     .catch(error => {
         console.error('Error:', error);
